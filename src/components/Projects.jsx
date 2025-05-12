@@ -16,12 +16,12 @@ export default function Projects() {
           >
             <h4 className="text-xl font-bold mb-2">{project.name}</h4>
             <a
-              href={`https://${project.subdomain}.yourdomain.com`}
+              href={`https://${project.subdomain}.abduboriy.tech`}
               className="text-blue-500 underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {project.subdomain}.yourdomain.com
+              {project.subdomain}.abduboriy.tech
             </a>
           </div>
         ))}
