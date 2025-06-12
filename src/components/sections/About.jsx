@@ -6,10 +6,23 @@ export const About = () => {
     'Vue',
     'TypeScript',
     'TailwindCSS',
-    'Svelte',
+    'Bootstrap',
+    'HTML',
+    'CSS',
   ];
 
-  const backendSkills = ['Node.js', 'Python', 'AWS', 'MongoDB', 'GraphQL'];
+  const backendSkills = [
+    'Node.js',
+    'Express.js',
+    'TypeScript',
+    'Nest.js',
+    'MongoDB',
+    'PostgreSQL',
+    'Restful APIs',
+    'GraphQL',
+    'Heroku',
+    'DigitalOcean',
+  ];
 
   return (
     <section
@@ -69,8 +82,15 @@ export const About = () => {
               <h3 className="text-xl font-bold mb-4"> 🏫 Education </h3>
               <ul className="list-disc list-inside text-gray-300 space-y-2">
                 <li>
-                  <strong> B.S. in Computer Science </strong> - XYZ University
-                  (2016-2020)
+                  <strong>
+                    {' '}
+                    Ongoing B.S. in Telecommunication Technologies{' '}
+                  </strong>{' '}
+                  -{' '}
+                  <a href="https://tuit.uz/">
+                    Tashkent University of Information Technologies named after
+                    Muhammad al-Khwarizmi, Tashkent, Uzbekistan (2020-2027)
+                  </a>
                 </li>
                 <li>
                   Relevant Coursework: Data Structures, Web Development, Cloud
@@ -84,14 +104,14 @@ export const About = () => {
                 <div>
                   <h4 className="font-semibold">
                     {' '}
-                    Software Engineer at ABC Corp (2020 - Present){' '}
+                    Freelancer (2024 - Present){' '}
                   </h4>
                   <p>
-                    Developed and maintained microservices for cloud-based
-                    applications.
+                    Developed and maintained microservices/monoliths for
+                    cloud-based applications.
                   </p>
                 </div>
-
+                {/* 
                 <div>
                   <h4 className="font-semibold">
                     {' '}
@@ -101,7 +121,7 @@ export const About = () => {
                     Assisted in building front-end components and integration
                     REST APIs
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
