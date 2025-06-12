@@ -22,20 +22,6 @@ export const Projects = () => {
       ],
       link: 'https://github.com/yourusername/cyber-sentinel',
     },
-    // {
-    //   title: 'SkillForge LMS',
-    //   description:
-    //     'Learning Management System with progress tracking, AI-generated quizzes, and real-time notifications. Focused on developer upskilling.',
-    //   tech: ['React', 'Node.js', 'Firebase', 'Tailwind CSS'],
-    //   link: 'https://github.com/yourusername/skillforge',
-    // },
-    // {
-    //   title: 'AI Book Reader',
-    //   description:
-    //     'Book platform that converts text to speech using AI voices, simplifies vocabulary, and offers discussion forums with reading progress sync.',
-    //   tech: ['Next.js', 'OpenAI API', 'Supabase', 'TTS API'],
-    //   link: 'https://github.com/yourusername/ai-book-reader',
-    // },
   ];
 
   return (
