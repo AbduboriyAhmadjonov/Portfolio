@@ -25,7 +25,7 @@ export default function ExtraComponent() {
       </a>
       <section class="flex gap-6">
         <a
-          href="https://linkedin.com/in/tedawf"
+          href="https://www.linkedin.com/in/abduboriy-ahmadjonov-2b18a0266"
           target="_blank"
           class="text-muted-foreground hover:text-foreground"
           rel="noopener noreferrer"
@@ -51,7 +51,7 @@ export default function ExtraComponent() {
           </svg>
         </a>
         <a
-          href="https://github.com/tedawf"
+          href="https://github.com/AbduboriyAhmadjonov"
           target="_blank"
           class="text-muted-foreground hover:text-foreground"
           rel="noopener noreferrer"
@@ -76,7 +76,7 @@ export default function ExtraComponent() {
           </svg>
         </a>
         <a
-          href="mailto:hello@tedawf.com"
+          href="ahmadjonovabduboriy3@gmail.com"
           target="_blank"
           class="text-muted-foreground hover:text-foreground"
           rel="noopener noreferrer"
