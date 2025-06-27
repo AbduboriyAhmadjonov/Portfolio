@@ -1,16 +1,16 @@
 import './index.css';
-import './App.css';
 
 import { useState } from 'react';
 
+import { Navbar } from './components/layout/Navbar';
+import { MobileMenu } from './components/layout/MobileMenu';
+import Footer from './components/layout/Footer';
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Projects } from './pages/Projects';
+import { Contact } from './pages/Contact';
+
 import { LoadingScreen } from './components/LoadingScreen';
-import { Navbar } from './components/Navbar';
-import { MobileMenu } from './components/MobileMenu';
-import { Home } from './components/sections/Home';
-import { About } from './components/sections/About';
-import { Projects } from './components/sections/Projects';
-import { Contact } from './components/sections/Contact';
-import Footer from './components/Footer';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);

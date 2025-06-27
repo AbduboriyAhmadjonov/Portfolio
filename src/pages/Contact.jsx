@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { RevealOnScroll } from '../RevealOnScroll';
+import { RevealOnScroll } from '../components/RevealOnScroll';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
 

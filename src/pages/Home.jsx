@@ -1,5 +1,6 @@
-import { RevealOnScroll } from '../RevealOnScroll';
-import ExtraComponent from '../ExtraComponent';
+import ExtraComponent from '../components/ExtraComponent';
+import { RevealOnScroll } from '../components/RevealOnScroll';
+import { Right } from '../components/icons/Icons';
 
 export const Home = () => {
   return (
@@ -23,21 +24,7 @@ export const Home = () => {
               className="bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.4)] flex items-center gap-2"
             >
               <span>View Projects</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-arrow-right size-5"
-              >
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
+              <Right />
             </a>
 
             <a

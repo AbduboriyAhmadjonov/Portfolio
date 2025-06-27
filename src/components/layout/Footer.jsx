@@ -16,7 +16,7 @@ export default function Footer() {
               Website
             </a>
             <a
-              href="ahmadjonovabduboriy3@gmail.com"
+              href="https://mailto:ahmadjonovabduboriy3@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
