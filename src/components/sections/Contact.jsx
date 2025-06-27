@@ -9,21 +9,24 @@ export const Contact = () => {
     message: '',
   });
 
+  const SERVICE_ID = 'service_uyxx0qp';
+  const TEMPLATE_ID = 'template_nm6516t';
+  const PUBLIC_KEY = 'iAUGS2OIFin09cTNd';
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     emailjs
-      .sendForm(
-        import.meta.env.VITE_SERVICE_ID,
-        import.meta.env.VITE_TEMPLATE_ID,
-        e.target,
-        import.meta.env.VITE_PUBLIC_KEY
-      )
+      .sendForm(SERVICE_ID, TEMPLATE_ID, e.target, PUBLIC_KEY)
       .then((result) => {
         alert('Message Sent!');
+        console.log(formData);
         setFormData({ name: '', email: '', message: '' });
       })
-      .catch(() => alert('Oops! Something went wrong. Please try again.'));
+      .catch((error) => {
+        alert('Oops! Something went wrong. Please try again.');
+        console.log('Failed: ' + error.text);
+      });
   };
 
   return (
@@ -34,7 +37,6 @@ export const Contact = () => {
       <RevealOnScroll>
         <div className="px-4 w-full min-w-[300px] md:w-[500px] sm:w-2/3 p-6">
           <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
-            {' '}
             Get In Touch
           </h2>
           <form className="space-y-6" onSubmit={handleSubmit}>
@@ -48,7 +50,10 @@ export const Contact = () => {
                 className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Name..."
                 onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
+                  setFormData({
+                    ...formData,
+                    name: e.target.value,
+                  })
                 }
               />
             </div>
@@ -63,7 +68,10 @@ export const Contact = () => {
                 className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="example@gmail.com"
                 onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
+                  setFormData({
+                    ...formData,
+                    email: e.target.value,
+                  })
                 }
               />
             </div>
@@ -78,7 +86,10 @@ export const Contact = () => {
                 className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Your Message..."
                 onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
+                  setFormData({
+                    ...formData,
+                    message: e.target.value,
+                  })
                 }
               />
             </div>

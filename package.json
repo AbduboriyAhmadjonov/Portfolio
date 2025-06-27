@@ -1,7 +1,12 @@
 {
-  "name": "ytb",
+  "name": "portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": {
+    "name": "Abduboriy",
+    "email": "2shgt.portfolio@inbox.testmail.app",
+    "url": "https://abduboriy.tech"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +17,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.6",
     "emailjs-com": "^3.2.0",
+    "lucide-react": "^0.524.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.6"
