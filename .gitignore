@@ -11,7 +11,6 @@ node_modules/
 dist/
 temp/
 .env
-package-lock.json
 dist-ssr
 *.local
 
