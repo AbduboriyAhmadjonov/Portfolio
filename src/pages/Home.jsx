@@ -15,7 +15,8 @@ export const Home = () => {
           </h1>
 
           <p className="tex-gray-400 text-lg mb-8 max-w-lg mx-auto">
-            I’m a Full-Stack Developer with a backend focus.
+            I’m a Full-Stack Developer with a backend focus. Also I am learning
+            how to build applications with AI (LangChain) in my free time.
           </p>
           <ExtraComponent />
           <div className="flex justify-center space-x-4">

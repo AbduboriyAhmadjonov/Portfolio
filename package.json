@@ -1,7 +1,12 @@
 {
   "name": "portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": {
+    "name": "Abduboriy",
+    "email": "2shgt.portfolio@inbox.testmail.app",
+    "url": "https://abduboriy.tech"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

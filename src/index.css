@@ -9,8 +9,6 @@ body {
   color: #f3f4f6;
 }
 
-/* #0a0a0a */
-
 @layer utilities {
   @keyframes blink {
     0%,
