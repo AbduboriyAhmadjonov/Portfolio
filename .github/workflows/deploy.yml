@@ -27,7 +27,7 @@ jobs:
         run: npm run build
 
       - name: Clean production folder
-        run: sudo rm -rf /var/www/portfolio_prod/*
+        run: rm -rf /var/www/portfolio_prod/*
 
       - name: Deploy new build
-        run: sudo cp -r dist/* /var/www/portfolio_prod/
+        run: cp -r dist/* /var/www/portfolio_prod/
