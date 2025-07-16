@@ -7,7 +7,7 @@ export const Projects = () => {
       description:
         'Telegram-based AI personal finance manager with voice input, smart categorization, and budget tracking. Built with PostgreSQL and Google Speech API.',
       tech: ['Node.js', 'Telegram Bot API', 'PostgreSQL', 'Google Cloud STT'],
-      link: 'https://github.com/yourusername/finbot-ai',
+      link: 'https://github.com/AbduboriyAhmadjonov/fin-bot-ai',
     },
     {
       title: 'Cyber Threat Intelligence Platform',
@@ -20,7 +20,7 @@ export const Projects = () => {
         'VirusTotal API',
         'PhishTank API',
       ],
-      link: 'https://github.com/yourusername/cyber-sentinel',
+      link: 'https://github.com/AbduboriyAhmadjonov/cyber-threat-intelligence',
     },
   ];
 
