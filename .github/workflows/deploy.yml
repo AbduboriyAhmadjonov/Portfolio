@@ -1,29 +1,48 @@
-name: Build & Deploy to Production
-
+name: Debug – verify workspace contents
 on:
   push:
-    branches:
-      - production
+    branches: [production]
 
 jobs:
   deploy:
     runs-on: self-hosted
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Clean previous build
-        run: rm -rf dist/
+      - name: Show what we just cloned
+        run: |
+          pwd
+          ls -la
+          echo "Looking for package.json..."
+          test -f package.json && echo "✅ package.json found" || echo "❌ package.json missing"
 
-      - name: Install dependencies
-        run: npm i
+# name: Build & Deploy to Production
 
-      - name: Build project
-        run: npm run build
+# on:
+#   push:
+#     branches:
+#       - production
 
-      - name: Clean production folder
-        run: sudo rm -rf /var/www/portfolio_prod/*
+# jobs:
+#   deploy:
+#     runs-on: self-hosted
 
-      - name: Deploy new build
-        run: sudo cp -r dist/* /var/www/portfolio_prod/
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Clean previous build
+#         run: rm -rf dist/
+
+#       - name: Install dependencies
+#         run: npm i
+
+#       - name: Build project
+#         run: npm run build
+
+#       - name: Clean production folder
+#         run: sudo rm -rf /var/www/portfolio_prod/*
+
+#       - name: Deploy new build
+#         run: sudo cp -r dist/* /var/www/portfolio_prod/
