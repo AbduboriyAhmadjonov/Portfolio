@@ -1,48 +1,36 @@
-name: Debug – verify workspace contents
+name: Build & Deploy to Production
+
 on:
   push:
-    branches: [production]
+    branches:
+      - production
 
 jobs:
   deploy:
     runs-on: self-hosted
+
     steps:
+      - name: Checkout repository
+        run: |
+          git init
+          git remote add origin https://github.com/${{ github.repository }}.git
+          git fetch --depth=1 origin ${{ github.sha }}
+          git reset --hard ${{ github.sha }}
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Show what we just cloned
-        run: |
-          pwd
-          ls -la
-          echo "Looking for package.json..."
-          test -f package.json && echo "✅ package.json found" || echo "❌ package.json missing"
+      - name: Clean previous build
+        run: rm -rf dist/
 
-# name: Build & Deploy to Production
+      - name: Install dependencies
+        run: npm i
 
-# on:
-#   push:
-#     branches:
-#       - production
+      - name: Build project
+        run: npm run build
 
-# jobs:
-#   deploy:
-#     runs-on: self-hosted
+      - name: Clean production folder
+        run: sudo rm -rf /var/www/portfolio_prod/*
 
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
-
-#       - name: Clean previous build
-#         run: rm -rf dist/
-
-#       - name: Install dependencies
-#         run: npm i
-
-#       - name: Build project
-#         run: npm run build
-
-#       - name: Clean production folder
-#         run: sudo rm -rf /var/www/portfolio_prod/*
-
-#       - name: Deploy new build
-#         run: sudo cp -r dist/* /var/www/portfolio_prod/
+      - name: Deploy new build
+        run: sudo cp -r dist/* /var/www/portfolio_prod/
