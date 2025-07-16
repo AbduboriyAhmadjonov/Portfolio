@@ -13,7 +13,6 @@ jobs:
       - name: Checkout repository
         run: |
           git init
-          git remote add origin https://github.com/${{ github.repository }}.git
           git fetch --depth=1 origin ${{ github.sha }}
           git reset --hard ${{ github.sha }}
 
