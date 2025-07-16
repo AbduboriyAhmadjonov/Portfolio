@@ -17,9 +17,6 @@ jobs:
           git fetch --depth=1 origin ${{ github.sha }}
           git reset --hard ${{ github.sha }}
 
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Clean previous build
         run: rm -rf dist/
 
