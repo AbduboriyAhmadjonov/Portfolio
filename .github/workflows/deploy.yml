@@ -10,6 +10,9 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Add this step to checkout your code
+
       - name: Clean previous build
         run: rm -rf dist/
 
