@@ -1,6 +1,6 @@
-import { RevealOnScroll } from '../components/RevealOnScroll';
+import { RevealOnScroll } from '../hooks/RevealOnScroll';
 
-export const Projects = () => {
+export default function Projects() {
   const projects = [
     {
       title: 'FinBot AI',
@@ -69,4 +69,4 @@ export const Projects = () => {
       </RevealOnScroll>
     </section>
   );
-};
+}

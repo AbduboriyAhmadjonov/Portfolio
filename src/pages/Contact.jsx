@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
-import { RevealOnScroll } from '../components/RevealOnScroll';
+import { RevealOnScroll } from '../hooks/RevealOnScroll';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
 
-export const Contact = () => {
+export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -119,4 +119,4 @@ export const Contact = () => {
       </RevealOnScroll>
     </section>
   );
-};
+}

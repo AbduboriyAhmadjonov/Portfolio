@@ -1,8 +1,8 @@
-import ExtraComponent from '../components/ExtraComponent';
-import { RevealOnScroll } from '../components/RevealOnScroll';
-import { Right } from '../components/icons/Icons';
+import Icons from '../components/ui/Icons';
+import { RevealOnScroll } from '../hooks/RevealOnScroll';
+import { FaAngleRight } from 'react-icons/fa';
 
-export const Home = () => {
+export default function Home() {
   return (
     <section
       id="home"
@@ -18,14 +18,14 @@ export const Home = () => {
             I’m a Full-Stack Developer with a backend focus. Also I am learning
             how to build applications with AI (LangChain) in my free time.
           </p>
-          <ExtraComponent />
+          <Icons />
           <div className="flex justify-center space-x-4">
             <a
               href="#projects"
               className="bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.4)] flex items-center gap-2"
             >
               <span>View Projects</span>
-              <Right />
+              <FaAngleRight />
             </a>
 
             <a
@@ -40,4 +40,4 @@ export const Home = () => {
       </RevealOnScroll>
     </section>
   );
-};
+}

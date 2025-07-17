@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
+
 import {
-  Bot,
-  SendHorizontal,
-  Trash2,
-  ChevronUp,
-  ChevronDown,
-  User,
-} from 'lucide-react';
+  LuBot,
+  LuSendHorizontal,
+  LuTrash2,
+  LuChevronUp,
+  LuChevronDown,
+  LuUser,
+} from 'react-icons/lu';
 
 export default function ChatButton() {
   const [open, setOpen] = useState(false);
@@ -106,7 +107,7 @@ export default function ChatButton() {
   };
 
   return (
-    <div className="fixed bottom-30 right-10 z-40 w-full max-w-xs sm:w-80 px-4 sm:px-0">
+    <div className="fixed bottom-27 right-17 z-40 w-full max-w-xs sm:w-80 px-4 sm:px-0">
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="w-full h-12 flex items-center gap-2 sm:gap-3 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-3 sm:px-6 transition-all duration-300 hover:cursor-pointer rounded-t-lg"
@@ -119,7 +120,7 @@ export default function ChatButton() {
           } `}
         ></span>
         <span>
-          <Bot className="w-5 h-5 sm:w-6 sm:h-6" />
+          <LuBot className="w-5 h-5 sm:w-6 sm:h-6" />
         </span>
         <span className="font-semibold text-sm sm:text-base flex-1 text-left">
           AI Chat
@@ -131,13 +132,13 @@ export default function ChatButton() {
         )}
         <span
           className={`transition-transform duration-300 ${
-            open ? 'rotate-180' : 'rotate-0'
+            open ? 'rotate-180' : 'rotate-180'
           }`}
         >
           {open ? (
-            <ChevronDown className="w-5 h-5" />
+            <LuChevronDown className="w-5 h-5" />
           ) : (
-            <ChevronUp className="w-5 h-5" />
+            <LuChevronUp className="w-5 h-5" />
           )}
         </span>
       </button>
@@ -179,7 +180,7 @@ export default function ChatButton() {
                   >
                     {message.sender === 'bot' && (
                       <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Bot className="w-4 h-4 text-white" />
+                        <LuBot className="w-4 h-4 text-white" />
                       </div>
                     )}
                     <div
@@ -196,7 +197,7 @@ export default function ChatButton() {
                     </div>
                     {message.sender === 'user' && (
                       <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <User className="w-4 h-4 text-white" />
+                        <LuUser className="w-4 h-4 text-white" />
                       </div>
                     )}
                   </div>
@@ -205,7 +206,7 @@ export default function ChatButton() {
               {isLoading && (
                 <div className="flex justify-start gap-2">
                   <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-4 h-4 text-white" />
+                    <LuBot className="w-4 h-4 text-white" />
                   </div>
                   <div className="bg-slate-700 text-white px-3 py-2 rounded-lg text-sm">
                     <div className="flex space-x-1">
@@ -223,7 +224,6 @@ export default function ChatButton() {
                 </div>
               )}
               <div ref={messagesEndRef} />
-              {/** Added */}
             </div>
 
             {/* Bottom Input Bar */}
@@ -234,7 +234,7 @@ export default function ChatButton() {
                 className="text-red-500 hover:text-red-700 hover:cursor-pointer transition p-1"
                 title="Clear messages"
               >
-                <Trash2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                <LuTrash2 className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
               {/* Input */}
@@ -254,7 +254,7 @@ export default function ChatButton() {
                 disabled={!inputMessage.trim() || isLoading}
                 className="bg-blue-600 hover:bg-blue-700 hover:cursor-pointer text-white p-2 rounded-md transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <SendHorizontal className="w-4 h-4 sm:w-5 sm:h-5" />
+                <LuSendHorizontal className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>

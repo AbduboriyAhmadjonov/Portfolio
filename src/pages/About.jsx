@@ -1,6 +1,6 @@
-import { RevealOnScroll } from '../components/RevealOnScroll';
+import { RevealOnScroll } from '../hooks/RevealOnScroll';
 
-export const About = () => {
+export default function About() {
   const frontendSkills = [
     'React',
     'Vue',
@@ -35,7 +35,6 @@ export const About = () => {
             {' '}
             About Me
           </h2>
-
           <div className="rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all">
             <p className="text-gray-300 mb-6">
               Passionate developer with expertise in building scalable web
@@ -129,4 +128,4 @@ export const About = () => {
       </RevealOnScroll>
     </section>
   );
-};
+}
