@@ -12,15 +12,15 @@ export default function Contact() {
 
   const formRef = useRef();
 
-  const SERVICE_ID = import.meta.VITE_SERVICE_ID; // Missing .env
-  const TEMPLATE_ID = import.meta.VITE_TEMPLATE_ID; // Missing .env
-  const PUBLIC_KEY = import.meta.VITE_PUBLIC_KEY; // Missing .env
+  const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
+  const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     emailjs.init({
-      publicKey: import.meta.env.PUBLIC_KEY,
+      publicKey: PUBLIC_KEY,
     });
 
     toast.promise(
