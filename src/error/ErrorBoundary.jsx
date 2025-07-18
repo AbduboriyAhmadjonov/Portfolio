@@ -1,4 +1,3 @@
-// src/components/ErrorBoundary.jsx
 import React from 'react';
 import ErrorDisplay from './ErrorDisplay';
 import { v4 as uuidv4 } from 'uuid';

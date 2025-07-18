@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ErrorBoundary from './ErrorBoundary';
+import ErrorBoundary from '@/error/ErrorBoundary';
 
 import Navbar from '@/components/layout/Navbar';
 import MobileMenu from '@/components/layout/MobileMenu';
