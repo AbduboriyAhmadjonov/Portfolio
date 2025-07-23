@@ -1,28 +1,22 @@
-import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import path from 'path';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
   server: {
-    host: 'localhost',
+    host: 'llm.abduboriy.tech',
     port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://llm.abduboriy.tech:8003',
         changeOrigin: true,
       },
       '/public': {
-        target: 'http://localhost:3000',
+        target: 'https://llm.abduboriy.tech:8003',
         changeOrigin: true,
       },
     },
   },
   plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
 });
