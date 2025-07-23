@@ -5,15 +5,15 @@ import tailwindcss from '@tailwindcss/vite';
 // https://vite.dev/config/
 export default defineConfig({
   server: {
-    host: 'llm.abduboriy.tech',
+    host: '0.0.0.0',
     port: 5173,
     proxy: {
       '/api': {
-        target: 'https://llm.abduboriy.tech:8003',
+        target: 'http://llm.abduboriy.tech:8003',
         changeOrigin: true,
       },
       '/public': {
-        target: 'https://llm.abduboriy.tech:8003',
+        target: 'http://llm.abduboriy.tech:8003',
         changeOrigin: true,
       },
     },
