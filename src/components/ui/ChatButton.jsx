@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 
 import {
   LuBot,
@@ -19,8 +19,14 @@ export default function ChatButton() {
 
   // Health check once on mount
   useEffect(() => {
-    fetch('/api/chat') // your GET route
-      .then((r) => setIsWorking(r.ok))
+    fetch('https://llm.abduboriy.tech/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((r) => {
+        console.log('Health check response:', r.ok);
+        setIsWorking(r.ok);
+      })
       .catch(() => setIsWorking(false));
   }, []);
 
@@ -49,7 +55,7 @@ export default function ChatButton() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('https://llm.abduboriy.tech/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
