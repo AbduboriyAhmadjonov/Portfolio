@@ -19,9 +19,10 @@ export default function ChatButton() {
 
   // Health check once on mount
   useEffect(() => {
-    fetch('https://llm.abduboriy.tech/api/chat', {
-      method: 'POST',
+    fetch('https://llm.abduboriy.tech/api/health', {
+      method: 'GET',
       headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: 'ping' }),
     })
       .then((r) => {
         console.log('Health check response:', r.ok);
