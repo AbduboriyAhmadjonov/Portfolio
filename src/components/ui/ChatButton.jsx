@@ -17,7 +17,6 @@ export default function ChatButton() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Health check once on mount
   useEffect(() => {
     fetch('https://llm.abduboriy.tech/api/health')
       .then((r) => {
@@ -27,7 +26,6 @@ export default function ChatButton() {
       .catch(() => setIsWorking(false));
   }, []);
 
-  // Scroll to bottom when new messages are added
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -36,7 +34,6 @@ export default function ChatButton() {
     scrollToBottom();
   }, [messages]);
 
-  // Function to send message to backend
   const sendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
 
@@ -82,7 +79,6 @@ export default function ChatButton() {
 
       setIsWorking(false);
 
-      // Error message
       const errorMessage = {
         id: Date.now() + 1,
         text: "Sorry, I'm having trouble connecting. Please try again later.",
@@ -96,7 +92,6 @@ export default function ChatButton() {
     }
   };
 
-  // Handle enter key press
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -104,7 +99,6 @@ export default function ChatButton() {
     }
   };
 
-  // Clear all messages
   const clearMessages = () => {
     setMessages([]);
   };

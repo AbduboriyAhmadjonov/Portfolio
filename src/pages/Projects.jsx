@@ -12,15 +12,30 @@ export default function Projects() {
     {
       title: 'Cyber Threat Intelligence Platform',
       description:
-        'A Cyber Threat Intelligence Platform collecting data from OSINT sources and analyzing threats using AI with a GraphQL API backend.',
+        'A Cyber Threat Intelligence Platform collecting data from OSINT sources and analyzing threats with nice UI.',
       tech: [
         'GraphQL',
         'Express.js',
         'MongoDB',
         'VirusTotal API',
         'PhishTank API',
+        'Google Safebrowsing API',
       ],
       link: 'https://github.com/AbduboriyAhmadjonov/cyber-threat-intelligence',
+    },
+    {
+      title: 'Portfolio with AI chat bot (frontend)',
+      description:
+        'My personal portfolio website featuring an AI chatbot that answers questions about my projects and skills, built with React and Tailwind.',
+      tech: ['React', 'Vite', 'TailwindCss', 'react-icons'],
+      link: 'https://github.com/AbduboriyAhmadjonov/Portfolio.git',
+    },
+    {
+      title: 'AI chat bot (backend)',
+      description:
+        'My personal portfolio website featuring an AI chatbot that answers questions about my projects and skills, built with Node.js and LangChain.',
+      tech: ['Node.js', 'LangChain (Antrophic)', 'MongoDb', 'Telegram Bot API'],
+      link: 'https://github.com/AbduboriyAhmadjonov/learning-langchain.git',
     },
   ];
 
