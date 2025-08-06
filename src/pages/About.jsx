@@ -1,15 +1,7 @@
 import { RevealOnScroll } from '../hooks/RevealOnScroll';
 
 export default function About() {
-  const frontendSkills = [
-    'React',
-    'Vue',
-    'TypeScript',
-    'TailwindCSS',
-    'Bootstrap',
-    'HTML',
-    'CSS',
-  ];
+  const frontendSkills = ['React', 'Vue', 'TypeScript', 'TailwindCSS', 'Bootstrap', 'HTML', 'CSS'];
 
   const backendSkills = [
     'Node.js',
@@ -25,10 +17,7 @@ export default function About() {
   ];
 
   return (
-    <section
-      id="about"
-      className="min-h-screen flex items-center justify-center py-20"
-    >
+    <section id="about" className="min-h-screen flex items-center justify-center py-20">
       <RevealOnScroll>
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
@@ -37,8 +26,8 @@ export default function About() {
           </h2>
           <div className="rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all">
             <p className="text-gray-300 mb-6">
-              Passionate developer with expertise in building scalable web
-              applications and creating innovative solutions.
+              Passionate developer with expertise in building scalable web applications and creating
+              innovative solutions.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -81,33 +70,22 @@ export default function About() {
               <h3 className="text-xl font-bold mb-4"> 🏫 Education </h3>
               <ul className="list-disc list-inside text-gray-300 space-y-2">
                 <li>
-                  <strong>
-                    {' '}
-                    Ongoing B.S. in Telecommunication Technologies{' '}
-                  </strong>{' '}
-                  -{' '}
+                  <strong> Ongoing B.S. in Telecommunication Technologies </strong> -{' '}
                   <a href="https://tuit.uz/">
-                    Tashkent University of Information Technologies named after
-                    Muhammad al-Khwarizmi, Tashkent, Uzbekistan (2020-2027)
+                    Tashkent University of Information Technologies named after Muhammad
+                    al-Khwarizmi, Tashkent, Uzbekistan (2020-2027)
                   </a>
                 </li>
-                <li>
-                  Relevant Coursework: Data Structures, Web Development, Cloud
-                  Computing...
-                </li>
+                <li>Relevant Coursework: Data Structures, Web Development, Cloud Computing...</li>
               </ul>
             </div>
             <div className="p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all">
               <h3 className="text-xl font-bold mb-4"> 💼 Work Experience </h3>
               <div className="space-y-4 text-gray-300">
                 <div>
-                  <h4 className="font-semibold">
-                    {' '}
-                    Freelancer (2024 - Present){' '}
-                  </h4>
+                  <h4 className="font-semibold"> Freelancer (2023 - Present) </h4>
                   <p>
-                    Developed and maintained microservices/monoliths for
-                    cloud-based applications.
+                    Developed and maintained microservices/monoliths for cloud-based applications.
                   </p>
                 </div>
                 {/* 

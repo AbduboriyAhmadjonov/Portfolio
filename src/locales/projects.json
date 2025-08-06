@@ -1,0 +1,38 @@
+[
+  {
+    "title": "FinBot AI",
+    "description": "Telegram-based AI personal finance manager with voice input, smart categorization, and budget tracking. Built with PostgreSQL and Google Speech-to-Text API.",
+    "tech": ["Node.js", "Telegram Bot API", "PostgreSQL", "Google Speech-to-Text API"],
+    "link_code": "https://github.com/AbduboriyAhmadjonov/fin-bot-ai",
+    "link_demo": "https://t.me/fin_helper_ai_bot/"
+  },
+  {
+    "title": "Cyber Threat Intelligence Platform",
+    "description": "A Cyber Threat Intelligence Platform collecting data from OSINT sources and analyzing threats with nice UI.",
+    "tech": [
+      "GraphQL",
+      "Express.js",
+      "MongoDB",
+      "VirusTotal API",
+      "PhishTank API",
+      "Google Safebrowsing API"
+    ],
+    "link_code": "https://github.com/AbduboriyAhmadjonov/cyber-threat-intelligence",
+    "link_demo": "https://cyber-threat.abduboriy.tech/"
+  },
+  {
+    "title": "Portfolio with AI chat bot (frontend)",
+    "description": "My personal portfolio website featuring an AI chatbot that answers questions about my projects and skills, built with React and Tailwind.",
+    "longDescription": "Interactive personal portfolio featuring a built-in AI assistant that answers questions about my projects, tech stack, and skills in real-time. Built with React, TailwindCSS and uses LangChain backend.",
+    "tech": ["React", "Vite", "TailwindCss", "react-icons"],
+    "link_code": "https://github.com/AbduboriyAhmadjonov/Portfolio.git",
+    "link_demo": "https://abduboriy.tech/chat"
+  },
+  {
+    "title": "AI chat bot (backend)",
+    "description": "My personal portfolio website featuring an AI chatbot that can answer questions about my projects and skills, built with Node.js and LangChain.",
+    "tech": ["Node.js", "LangChain (Antrophic)", "MongoDb", "Telegram Bot API"],
+    "link_code": "https://github.com/AbduboriyAhmadjonov/learning-langchain.git",
+    "link_demo": null
+  }
+]

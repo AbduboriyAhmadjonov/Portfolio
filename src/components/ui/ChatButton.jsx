@@ -104,7 +104,7 @@ export default function ChatButton() {
   };
 
   return (
-    <div className="fixed bottom-27 right-17 z-40 w-full max-w-xs sm:w-80 px-4 sm:px-0">
+    <div className="fixed bottom-27 right-17 z-40 w-full max-w-xs sm:w-80 px-4 sm:px-0" id="chat">
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="w-full h-12 flex items-center gap-2 sm:gap-3 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-3 sm:px-6 transition-all duration-300 hover:cursor-pointer rounded-t-lg"
@@ -119,24 +119,14 @@ export default function ChatButton() {
         <span>
           <LuBot className="w-5 h-5 sm:w-6 sm:h-6" />
         </span>
-        <span className="font-semibold text-sm sm:text-base flex-1 text-left">
-          AI Chat
-        </span>
+        <span className="font-semibold text-sm sm:text-base flex-1 text-left">AI Chat</span>
         {messages.length > 0 && (
           <span className="bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
             {Math.floor(messages.length / 2)}
           </span>
         )}
-        <span
-          className={`transition-transform duration-300 ${
-            open ? 'rotate-180' : 'rotate-180'
-          }`}
-        >
-          {open ? (
-            <LuChevronDown className="w-5 h-5" />
-          ) : (
-            <LuChevronUp className="w-5 h-5" />
-          )}
+        <span className={`transition-transform duration-300 ${open ? 'rotate-180' : 'rotate-180'}`}>
+          {open ? <LuChevronDown className="w-5 h-5" /> : <LuChevronUp className="w-5 h-5" />}
         </span>
       </button>
 
@@ -161,8 +151,8 @@ export default function ChatButton() {
                     Send a message to start the chat!
                   </h2>
                   <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
-                    You can ask the bot anything about me and it will help to
-                    find the relevant information!
+                    You can ask the bot anything about me and it will help to find the relevant
+                    information!
                   </p>
                 </div>
               ) : (
@@ -170,9 +160,7 @@ export default function ChatButton() {
                   <div
                     key={message.id}
                     className={`flex gap-2 ${
-                      message.sender === 'user'
-                        ? 'justify-end'
-                        : 'justify-start'
+                      message.sender === 'user' ? 'justify-end' : 'justify-start'
                     }`}
                   >
                     {message.sender === 'bot' && (
@@ -188,9 +176,7 @@ export default function ChatButton() {
                       }`}
                     >
                       <p>{message.text}</p>
-                      <p className="text-xs opacity-70 mt-1">
-                        {message.timestamp}
-                      </p>
+                      <p className="text-xs opacity-70 mt-1">{message.timestamp}</p>
                     </div>
                     {message.sender === 'user' && (
                       <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
