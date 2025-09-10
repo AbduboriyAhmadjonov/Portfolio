@@ -19,7 +19,7 @@ export default function Icons() {
 
         <div className="absolute z-10 flex-col gap-2 bg-zinc-900 text-white rounded shadow-lg p-2 opacity-0 group-hover/resume:opacity-100 group-hover/resume:translate-y-0 translate-y-2 pointer-events-none group-hover/resume:pointer-events-auto transition-all duration-200 w-max min-w-[150px]">
           <a
-            href="/resume.pdf"
+            href="/2025_CV_compressed.pdf"
             target="_blank"
             className="flex items-center gap-2 px-3 py-1 hover:bg-zinc-800 rounded text-sm"
           >
@@ -27,7 +27,7 @@ export default function Icons() {
             View Resume
           </a>
           <a
-            href="/resume.pdf"
+            href="/2025_CV_compressed.pdf"
             download
             className="flex items-center gap-2 px-3 py-1 hover:bg-zinc-800 rounded text-sm"
           >
