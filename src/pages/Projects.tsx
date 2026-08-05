@@ -2,7 +2,7 @@ import { useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { RevealOnScroll } from '../hooks/RevealOnScroll';
 import Modal from '../components/ui/Modal';
 import projects from '../locales/projects.json';
-import { FiTerminal, FiDatabase, FiLayout, FiCheckSquare } from 'react-icons/fi';
+import { FiTerminal, FiBarChart2, FiBookOpen, FiCheckSquare } from 'react-icons/fi';
 import type { Project } from '../types';
 import type { IconType } from 'react-icons';
 
@@ -159,10 +159,9 @@ export default function Projects() {
 }
 
 const PLACEHOLDER_ICONS: Record<string, IconType> = {
-  'SaaS Admin': FiLayout,
   'TaskFlow': FiCheckSquare,
-  'FinBot AI': FiDatabase,
-  'Cyber Threat': FiTerminal,
+  'Simple Analytics': FiBarChart2,
+  'Vocab Bot': FiBookOpen,
 };
 
 function getPlaceholderIcon(title: string): IconType {

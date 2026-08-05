@@ -1,77 +1,53 @@
 [
   {
     "category": "Software Projects",
-    "title": "SaaS Admin Dashboard",
-    "problem": "Needed a secure, production-grade authentication system without relying on third-party auth providers like Auth0 or Firebase Auth — full control over session management, token lifecycle, and security hardening.",
-    "architecture": "Built a custom auth system with in-memory access tokens and httpOnly refresh token cookies. Added CSRF protection via double-submit cookie pattern, bcrypt password hashing with configurable salt rounds, a singleton initPromise guard to prevent race conditions during server bootstrap, and single-use refresh token rotation that invalidates tokens after each use to prevent replay attacks.",
-    "outcome": "Production-ready auth flow with zero third-party auth dependency. Stateful refresh tokens stored in MongoDB enable immediate revocation on logout or compromise, with automatic token rotation on every refresh cycle.",
-    "keyEngineering": "Custom JWT auth with httpOnly cookies, CSRF protection, single-use refresh token rotation, and race condition guards — no third-party auth providers.",
+    "title": "TaskFlow — Kanban Task Manager",
+    "problem": "I wanted a full-stack board app I could take all the way to production standards rather than stopping at 'it works locally' — real authentication, real authorization on every write, tests, and a deployment pipeline.",
+    "architecture": "NestJS REST API over MongoDB with a React + TypeScript front end. Authentication uses short-lived JWT access tokens with refresh-token rotation, and every mutation re-checks that the board, list, or card actually belongs to the requesting user rather than trusting the ID in the request. The app ships as multi-stage Docker builds, and a GitHub Actions pipeline runs the unit test suite on every push.",
+    "outcome": "A board app with per-user data isolation enforced server-side, a unit-tested service layer, reproducible container builds, and CI that fails the build when tests break.",
+    "keyEngineering": "JWT auth with refresh-token rotation, per-user ownership checks on every mutation, unit tests, multi-stage Docker builds, and a GitHub Actions pipeline.",
     "lessons": [
-      "Chose stateful refresh tokens over stateless JWT for revocation control — accepted the DB lookup cost on refresh as a worthwhile trade-off for security",
-      "Implemented single-use refresh token rotation to prevent token replay attacks",
-      "Built a singleton initPromise pattern to guard against race conditions during NestJS module initialization",
-      "Added CSRF double-submit cookie pattern to protect against cross-site request forgery on auth endpoints"
+      "Ownership checks belong on every mutation, not just at login — an authenticated user is not automatically an authorized one",
+      "Rotating refresh tokens limits the damage window if a token leaks, at the cost of a lookup on refresh",
+      "Multi-stage Docker builds keep the runtime image free of build-time dependencies",
+      "Wiring CI early meant the test suite stayed honest instead of rotting after the first red build"
     ],
-    "tech": ["React 19", "NestJS", "MongoDB", "TypeScript"],
-    "link_code": "https://github.com/AbduboriyAhmadjonov/SaaS-Admin-Dashboard",
-    "link_demo": null
-  },
-  {
-    "category": "Software Projects",
-    "title": "TaskFlow — Task Management App",
-    "problem": "Needed a full-stack Trello-like task management tool to demonstrate end-to-end monorepo architecture with a modern React frontend and NestJS API.",
-    "architecture": "Monorepo with a NestJS REST API backend using Mongoose ODM for MongoDB, and a React 19 frontend built with Vite and Tailwind CSS v4. Complete CRUD operations for boards, lists, and cards with drag-and-drop reordering.",
-    "outcome": "Fully functional task management app with monorepo architecture, clean API design, and a responsive Tailwind UI — demonstrating full-stack ownership from database schema to component design.",
-    "keyEngineering": "Monorepo architecture with NestJS + React 19, Mongoose ODM, Tailwind v4, and Vite build pipeline.",
-    "lessons": [
-      "Structured a monorepo with shared configuration across backend and frontend packages",
-      "Designed Mongoose schemas for nested board → list → card relationships with efficient querying",
-      "Implemented optimistic UI updates for card operations to keep the interface responsive",
-      "Used Tailwind CSS v4 with Vite for fast iteration on component styling"
-    ],
-    "tech": ["NestJS", "MongoDB", "React 19", "Vite", "Tailwind CSS"],
+    "tech": ["NestJS", "TypeScript", "React", "MongoDB", "Docker", "GitHub Actions"],
     "link_code": "https://github.com/AbduboriyAhmadjonov/TaskFlow",
     "link_demo": null
   },
   {
     "category": "Software Projects",
-    "title": "FinBot AI — Personal Finance Manager",
-    "problem": "Users needed a zero-friction way to log expenses without leaving Telegram — including via voice messages in noisy environments.",
-    "architecture": "Built a Node.js pipeline that chunks incoming Telegram audio, pipes it through Google Speech-to-Text, then runs a rule-based NLP categorizer before writing to a normalized PostgreSQL schema supporting multi-user isolation and monthly rollups.",
-    "outcome": "Production bot handling voice + text input with automatic categorization, budget alerts, and monthly summaries — all stateless except for a lightweight session cache for multi-step flows.",
-    "keyEngineering": "Chunked audio transcription pipeline → rule-based NLP categorizer → normalized PostgreSQL with per-user budget tracking.",
+    "title": "Simple Analytics API — Privacy-First Web Analytics",
+    "problem": "Most drop-in analytics means handing visitor data to a third party. I wanted a page-view tracking service small enough to self-host, that answers the few questions that actually matter without profiling anyone.",
+    "architecture": "A NestJS service running on the Fastify adapter over MongoDB. Incoming events pass through DTO validation at the boundary so malformed payloads are rejected before they reach the database, and aggregation endpoints return daily, referrer, and browser breakdowns. The whole API surface is documented with Swagger/OpenAPI.",
+    "outcome": "A self-hostable analytics API with validated inputs, useful breakdowns, and browsable OpenAPI docs — no third-party analytics vendor in the request path.",
+    "keyEngineering": "NestJS on Fastify with DTO validation at the boundary, aggregation by day/referrer/browser, and full Swagger/OpenAPI documentation.",
     "lessons": [
-      "Designed a chunked audio handling pipeline to stay within Speech-to-Text payload limits",
-      "Normalized a PostgreSQL schema for multi-user transaction isolation with efficient monthly aggregations",
-      "Built a rule-based NLP layer that degrades gracefully on ambiguous inputs instead of miscategorizing",
-      "Added a session cache to handle multi-step conversation flows in an otherwise stateless bot"
+      "Validating at the DTO boundary keeps malformed data out of the database instead of defending against it at every read",
+      "Chose the Fastify adapter over Express for an endpoint whose whole job is absorbing frequent, small writes",
+      "Generated OpenAPI docs make an API testable by anyone without reading the source first",
+      "Deciding what not to collect was as much a design decision as the schema itself"
     ],
-    "tech": ["Node.js", "Telegram Bot API", "PostgreSQL", "Google Speech-to-Text API"],
-    "link_code": "https://github.com/AbduboriyAhmadjonov/fin-bot-ai",
-    "link_demo": "https://t.me/fin_helper_ai_bot/"
+    "tech": ["NestJS", "Fastify", "MongoDB", "Swagger/OpenAPI", "TypeScript"],
+    "link_code": "https://github.com/AbduboriyAhmadjonov/simple-analytics-api",
+    "link_demo": null
   },
   {
     "category": "Software Projects",
-    "title": "Cyber Threat Intelligence Platform",
-    "problem": "Security analysts juggle three separate OSINT dashboards (VirusTotal, PhishTank, Google Safe Browsing) with incompatible data formats and different confidence scoring — slowing triage.",
-    "architecture": "Designed a GraphQL API on Express.js that normalizes threat verdicts from all three sources into a unified schema stored in MongoDB. Incoming lookups are queued to respect per-source rate limits, and results are cached so repeated queries hit the database instead of burning API quota.",
-    "outcome": "Single-query threat triage across 3 sources with normalized confidence scores, sub-second cached lookups, and an analyst-friendly UI that presents dense security data without overwhelming users.",
-    "keyEngineering": "Unified GraphQL schema across 3 external APIs, MongoDB result caching for rate-limit compliance, normalized cross-source confidence scoring.",
+    "title": "Vocab Bot — Vocabulary Learning Bot",
+    "problem": "Typing vocabulary into a flashcard app by hand is the step where learning actually stops. I wanted to photograph a page of text and have the words become reviewable cards without any manual entry.",
+    "architecture": "A Python Telegram bot where a photographed page is passed to a vision model that extracts the vocabulary into flashcards. Review scheduling uses the Leitner spaced-repetition system, backed by SQLite with a language-neutral schema so the bot is not tied to any particular language pair. The bot also generates audio tracks for cards and sends scheduled review reminders.",
+    "outcome": "A working Telegram bot that turns a photo of a page into scheduled, audio-backed flashcards — removing the manual data entry that usually kills a vocabulary habit.",
+    "keyEngineering": "Vision-model text extraction into flashcards, Leitner spaced repetition over a language-neutral SQLite schema, generated audio, and scheduled reminders.",
     "lessons": [
-      "Designed a GraphQL schema that reconciles three fundamentally different threat-data models into one queryable type",
-      "Implemented a request queue with per-source rate-limit windows and automatic cache fallback",
-      "Learned to normalize and compare confidence scores across formats that use percentages, categories, and binary flags",
-      "Iterated on UI data density — reduced analyst cognitive load by 2 clicks per triage action"
+      "Keeping the schema language-neutral meant a new language needed no migration",
+      "Leitner boxes gave most of the benefit of spaced repetition with far less complexity than an interval-scoring algorithm",
+      "Scheduled reminders turned out to matter more for retention than any feature inside the review flow",
+      "Vision extraction needs a human confirmation step — a wrong card is worse than a missing one"
     ],
-    "tech": [
-      "GraphQL",
-      "Express.js",
-      "MongoDB",
-      "VirusTotal API",
-      "PhishTank API",
-      "Google Safe Browsing API"
-    ],
-    "link_code": "https://github.com/AbduboriyAhmadjonov/cyber-threat-intelligence",
-    "link_demo": "https://cyber-threat.abduboriy.tech/"
+    "tech": ["Python", "Telegram Bot API", "Vision + LLM models", "SQLite"],
+    "link_code": "https://github.com/AbduboriyAhmadjonov/vocab-bot",
+    "link_demo": null
   }
 ]

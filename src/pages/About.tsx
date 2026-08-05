@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { RevealOnScroll } from '../hooks/RevealOnScroll';
 
-const frontendSkills = ['React', 'Vue', 'TypeScript', 'TailwindCSS', 'Bootstrap', 'HTML', 'CSS'];
 const backendSkills = [
-  'Node.js', 'Express.js', 'TypeScript', 'Nest.js', 'Python',
-  'MongoDB', 'PostgreSQL', 'REST APIs', 'GraphQL',
-  'Heroku', 'DigitalOcean',
+  'Node.js', 'NestJS', 'Express', 'Fastify', 'TypeScript', 'Python',
+  'REST APIs', 'GraphQL',
+  'PostgreSQL', 'MongoDB', 'Prisma', 'Mongoose', 'Supabase',
 ];
-const automationSkills = ['n8n', 'LangChain', 'Anthropic Claude', 'OpenAI', 'Telegram Bot API', 'Google Workspace', 'Slack', 'Airtable', 'ClickUp'];
+const frontendSkills = ['React', 'TypeScript', 'TanStack Query', 'TailwindCSS', 'HTML5', 'CSS3'];
+const practiceSkills = [
+  'Docker', 'Linux server administration', 'CI/CD (GitHub Actions)', 'Git & GitHub',
+  'JWT auth', 'Unit testing', 'Swagger/OpenAPI', 'Webhooks & idempotent integrations',
+  'Hetzner', 'DigitalOcean',
+];
 
 export default function About() {
   return (
@@ -21,17 +25,35 @@ export default function About() {
           {/* Bio */}
           <div className="rounded-xl p-5 sm:p-8 border border-white/10 hover:-translate-y-1 transition-all mb-6 cursor-default">
             <p className="text-gray-300 mb-3 text-sm sm:text-base leading-relaxed">
-              Full-Stack Developer & AI Automation Engineer specializing in end-to-end web applications,
-              Node.js/NestJS APIs, PostgreSQL databases, and AI-powered workflow automations — currently based in Uzbekistan.
+              Backend-focused full-stack developer based in Tashkent, Uzbekistan. I ship services
+              end to end — Node.js and TypeScript APIs, PostgreSQL schemas, React front ends — and
+              I keep them running afterwards.
             </p>
             <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
-              I design and ship full-stack systems for teams and clients: from React frontends and
-              REST/GraphQL APIs to database architecture, n8n automations, and LLM integrations.
+              Currently building and maintaining production systems for five client companies across
+              Europe, Canada, and Uzbekistan: REST integrations between systems that disagree with
+              each other, self-hosted services on Linux and Docker, and the deployment and support
+              that follows. I learn fast by building, and I care about why a product is built, not
+              only how.
             </p>
           </div>
 
           {/* Skills grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
+            <div className="rounded-xl p-4 sm:p-6 border border-white/10 hover:-translate-y-1 transition-all cursor-default">
+              <h3 className="text-lg sm:text-xl font-bold mb-3">Backend & Databases</h3>
+              <div className="flex flex-wrap gap-2">
+                {backendSkills.map((tech) => (
+                  <span
+                    key={tech}
+                    className="bg-blue-500/10 text-blue-400 py-1 px-3 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
             <div className="rounded-xl p-4 sm:p-6 border border-white/10 hover:-translate-y-1 transition-all cursor-default">
               <h3 className="text-lg sm:text-xl font-bold mb-3">Frontend</h3>
               <div className="flex flex-wrap gap-2">
@@ -45,27 +67,13 @@ export default function About() {
                 ))}
               </div>
             </div>
-
-            <div className="rounded-xl p-4 sm:p-6 border border-white/10 hover:-translate-y-1 transition-all cursor-default">
-              <h3 className="text-lg sm:text-xl font-bold mb-3">Backend</h3>
-              <div className="flex flex-wrap gap-2">
-                {backendSkills.map((tech) => (
-                  <span
-                    key={tech}
-                    className="bg-blue-500/10 text-blue-400 py-1 px-3 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Automation skills */}
+          {/* Practices & ops */}
           <div className="rounded-xl p-4 sm:p-6 border border-white/10 hover:-translate-y-1 transition-all mb-6 cursor-default">
-            <h3 className="text-lg sm:text-xl font-bold mb-3">Automation & AI</h3>
+            <h3 className="text-lg sm:text-xl font-bold mb-3">Practices & Ops</h3>
             <div className="flex flex-wrap gap-2">
-              {automationSkills.map((tech) => (
+              {practiceSkills.map((tech) => (
                 <span
                   key={tech}
                   className="bg-cyan-500/10 text-cyan-400 py-1 px-3 rounded-full text-xs sm:text-sm hover:bg-cyan-500/20 transition"

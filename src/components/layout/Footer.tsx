@@ -8,7 +8,7 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-4 md:mt-0">
             <a
-              href="https://abduboriy.tech"
+              href="https://abduboriy.me"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
