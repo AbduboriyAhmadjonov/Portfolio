@@ -1,0 +1,77 @@
+[
+  {
+    "category": "Software Projects",
+    "title": "SaaS Admin Dashboard",
+    "problem": "Needed a secure, production-grade authentication system without relying on third-party auth providers like Auth0 or Firebase Auth — full control over session management, token lifecycle, and security hardening.",
+    "architecture": "Built a custom auth system with in-memory access tokens and httpOnly refresh token cookies. Added CSRF protection via double-submit cookie pattern, bcrypt password hashing with configurable salt rounds, a singleton initPromise guard to prevent race conditions during server bootstrap, and single-use refresh token rotation that invalidates tokens after each use to prevent replay attacks.",
+    "outcome": "Production-ready auth flow with zero third-party auth dependency. Stateful refresh tokens stored in MongoDB enable immediate revocation on logout or compromise, with automatic token rotation on every refresh cycle.",
+    "keyEngineering": "Custom JWT auth with httpOnly cookies, CSRF protection, single-use refresh token rotation, and race condition guards — no third-party auth providers.",
+    "lessons": [
+      "Chose stateful refresh tokens over stateless JWT for revocation control — accepted the DB lookup cost on refresh as a worthwhile trade-off for security",
+      "Implemented single-use refresh token rotation to prevent token replay attacks",
+      "Built a singleton initPromise pattern to guard against race conditions during NestJS module initialization",
+      "Added CSRF double-submit cookie pattern to protect against cross-site request forgery on auth endpoints"
+    ],
+    "tech": ["React 19", "NestJS", "MongoDB", "TypeScript"],
+    "link_code": "https://github.com/AbduboriyAhmadjonov/SaaS-Admin-Dashboard",
+    "link_demo": null
+  },
+  {
+    "category": "Software Projects",
+    "title": "TaskFlow — Task Management App",
+    "problem": "Needed a full-stack Trello-like task management tool to demonstrate end-to-end monorepo architecture with a modern React frontend and NestJS API.",
+    "architecture": "Monorepo with a NestJS REST API backend using Mongoose ODM for MongoDB, and a React 19 frontend built with Vite and Tailwind CSS v4. Complete CRUD operations for boards, lists, and cards with drag-and-drop reordering.",
+    "outcome": "Fully functional task management app with monorepo architecture, clean API design, and a responsive Tailwind UI — demonstrating full-stack ownership from database schema to component design.",
+    "keyEngineering": "Monorepo architecture with NestJS + React 19, Mongoose ODM, Tailwind v4, and Vite build pipeline.",
+    "lessons": [
+      "Structured a monorepo with shared configuration across backend and frontend packages",
+      "Designed Mongoose schemas for nested board → list → card relationships with efficient querying",
+      "Implemented optimistic UI updates for card operations to keep the interface responsive",
+      "Used Tailwind CSS v4 with Vite for fast iteration on component styling"
+    ],
+    "tech": ["NestJS", "MongoDB", "React 19", "Vite", "Tailwind CSS"],
+    "link_code": "https://github.com/AbduboriyAhmadjonov/TaskFlow",
+    "link_demo": null
+  },
+  {
+    "category": "Software Projects",
+    "title": "FinBot AI — Personal Finance Manager",
+    "problem": "Users needed a zero-friction way to log expenses without leaving Telegram — including via voice messages in noisy environments.",
+    "architecture": "Built a Node.js pipeline that chunks incoming Telegram audio, pipes it through Google Speech-to-Text, then runs a rule-based NLP categorizer before writing to a normalized PostgreSQL schema supporting multi-user isolation and monthly rollups.",
+    "outcome": "Production bot handling voice + text input with automatic categorization, budget alerts, and monthly summaries — all stateless except for a lightweight session cache for multi-step flows.",
+    "keyEngineering": "Chunked audio transcription pipeline → rule-based NLP categorizer → normalized PostgreSQL with per-user budget tracking.",
+    "lessons": [
+      "Designed a chunked audio handling pipeline to stay within Speech-to-Text payload limits",
+      "Normalized a PostgreSQL schema for multi-user transaction isolation with efficient monthly aggregations",
+      "Built a rule-based NLP layer that degrades gracefully on ambiguous inputs instead of miscategorizing",
+      "Added a session cache to handle multi-step conversation flows in an otherwise stateless bot"
+    ],
+    "tech": ["Node.js", "Telegram Bot API", "PostgreSQL", "Google Speech-to-Text API"],
+    "link_code": "https://github.com/AbduboriyAhmadjonov/fin-bot-ai",
+    "link_demo": "https://t.me/fin_helper_ai_bot/"
+  },
+  {
+    "category": "Software Projects",
+    "title": "Cyber Threat Intelligence Platform",
+    "problem": "Security analysts juggle three separate OSINT dashboards (VirusTotal, PhishTank, Google Safe Browsing) with incompatible data formats and different confidence scoring — slowing triage.",
+    "architecture": "Designed a GraphQL API on Express.js that normalizes threat verdicts from all three sources into a unified schema stored in MongoDB. Incoming lookups are queued to respect per-source rate limits, and results are cached so repeated queries hit the database instead of burning API quota.",
+    "outcome": "Single-query threat triage across 3 sources with normalized confidence scores, sub-second cached lookups, and an analyst-friendly UI that presents dense security data without overwhelming users.",
+    "keyEngineering": "Unified GraphQL schema across 3 external APIs, MongoDB result caching for rate-limit compliance, normalized cross-source confidence scoring.",
+    "lessons": [
+      "Designed a GraphQL schema that reconciles three fundamentally different threat-data models into one queryable type",
+      "Implemented a request queue with per-source rate-limit windows and automatic cache fallback",
+      "Learned to normalize and compare confidence scores across formats that use percentages, categories, and binary flags",
+      "Iterated on UI data density — reduced analyst cognitive load by 2 clicks per triage action"
+    ],
+    "tech": [
+      "GraphQL",
+      "Express.js",
+      "MongoDB",
+      "VirusTotal API",
+      "PhishTank API",
+      "Google Safe Browsing API"
+    ],
+    "link_code": "https://github.com/AbduboriyAhmadjonov/cyber-threat-intelligence",
+    "link_demo": "https://cyber-threat.abduboriy.tech/"
+  }
+]

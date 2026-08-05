@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  background: #030612;
+  color: #f3f4f6;
+  cursor: default;
+  overflow-x: hidden;
+}
+
+a, button, [role="button"], input[type="submit"], summary {
+  cursor: pointer;
+}
+
+input, textarea, select {
+  cursor: text;
+}
+
+@layer utilities {
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .animate-blink {
+    animation: blink 0.8s step-end infinite;
+  }
+
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes loading {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(250%);
+    }
+  }
+
+  .animate-loading-bar {
+    animation: loading 0.8s ease infinite;
+  }
+}
+
+/* RevealOnScroll now uses inline styles */
+
+/* Hide scrollbar in modals */
+.modal-scrollable {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.modal-scrollable::-webkit-scrollbar {
+  display: none;
+}
+
