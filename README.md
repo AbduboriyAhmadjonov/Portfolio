@@ -128,5 +128,5 @@ Portfolio/
 ## 👤 Author & Contact
 
 - **Name:** Abduboriy Ahmadjonov
-- **Portfolio:** [abduboriy.tech](https://abduboriy.tech)
+- **Portfolio:** [abduboriy.me](https://abduboriy.me)
 - **Telegram:** [@abduboriy05](https://t.me/abduboriy05)
