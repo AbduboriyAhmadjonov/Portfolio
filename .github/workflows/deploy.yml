@@ -1,0 +1,102 @@
+# Builds the site and rsyncs it to the Hetzner VPS.
+#
+# Runs on a GitHub-hosted runner, NOT a self-hosted one. A self-hosted runner on
+# a public repository lets a fork's pull request execute code on that machine —
+# which here would be the server serving the live site.
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   VITE_SERVICE_ID    EmailJS service id
+#   VITE_TEMPLATE_ID   EmailJS template id
+#   VITE_PUBLIC_KEY    EmailJS public key
+#   VITE_BACKEND_URL   https://llm.abduboriy.me   (no trailing slash)
+#   SSH_HOST           167.233.201.99
+#   SSH_USER           the sudo user on the VPS
+#   SSH_PRIVATE_KEY    private half of a deploy-only keypair
+#   SSH_KNOWN_HOSTS    output of: ssh-keyscan -H 167.233.201.99
+
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never let two deploys write to the web root at the same time.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      # Fail early with a clear message rather than shipping a broken build.
+      # Vite inlines missing env vars as `undefined`, which fails silently in
+      # the browser instead of failing here.
+      - name: Verify required secrets are set
+        env:
+          VITE_SERVICE_ID: ${{ secrets.VITE_SERVICE_ID }}
+          VITE_TEMPLATE_ID: ${{ secrets.VITE_TEMPLATE_ID }}
+          VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
+          VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          : "${VITE_SERVICE_ID:?missing repository secret}"
+          : "${VITE_TEMPLATE_ID:?missing repository secret}"
+          : "${VITE_PUBLIC_KEY:?missing repository secret}"
+          : "${VITE_BACKEND_URL:?missing repository secret}"
+          : "${SSH_HOST:?missing repository secret}"
+          : "${SSH_USER:?missing repository secret}"
+          : "${SSH_PRIVATE_KEY:?missing repository secret}"
+          : "${SSH_KNOWN_HOSTS:?missing repository secret}"
+
+      - run: npm ci
+
+      - name: Build
+        env:
+          VITE_SERVICE_ID: ${{ secrets.VITE_SERVICE_ID }}
+          VITE_TEMPLATE_ID: ${{ secrets.VITE_TEMPLATE_ID }}
+          VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
+          VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
+        run: npm run build
+
+      # Catches the specific failure where VITE_BACKEND_URL was absent and the
+      # chat widget ends up requesting the literal path "undefined/api/chat".
+      - name: Sanity-check the build
+        run: |
+          test -f dist/index.html
+          if grep -rq "undefined/api" dist/assets/; then
+            echo "::error::VITE_BACKEND_URL did not reach the bundle"
+            exit 1
+          fi
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Deploy to VPS
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
+            dist/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/abduboriy.me/"
+
+      - name: Verify the site responds
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 https://abduboriy.me)
+          echo "https://abduboriy.me -> $code"
+          test "$code" = "200"
