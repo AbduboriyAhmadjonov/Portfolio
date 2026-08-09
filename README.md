@@ -1,132 +1,66 @@
-# Portfolio with AI Chatbot
+# abduboriy.me — personal site
 
-A modern personal portfolio site built with React, showcasing projects and skills, featuring an integrated AI chatbot and contact form powered by EmailJS. Deployed on a DigitalOcean Droplet with backend support and Telegram bot integration.
+Source for [abduboriy.me](https://abduboriy.me). A single-page portfolio: what I
+work on, the projects behind it, and a contact form.
 
----
+Built with React 19, TypeScript, Vite and Tailwind CSS v4. Self-hosted on a
+Hetzner VPS behind nginx, with TLS from Let's Encrypt.
 
-## 🚀 Features
+## Stack
 
-- ⚡ Fast and responsive design using **React + TailwindCSS**
-- 🤖 Integrated AI chatbot powered by **OpenAI API**
-- ✉️ Contact form with **EmailJS** (sends emails to your personal inbox)
-- 💬 Early-stage **Telegram bot integration** (not yet complete)
-- 🌐 Deployed on **DigitalOcean**
-- 🧠 Future plans for improved UI and smarter chatbot interactions
+| | |
+|---|---|
+| Frontend | React 19, TypeScript, Vite, Tailwind CSS v4 |
+| Contact form | EmailJS (no backend needed) |
+| Hosting | Hetzner VPS · Ubuntu · nginx · Let's Encrypt |
 
----
+The site is fully static — nginx serves the built files straight from disk.
+The optional chat widget talks to a separate service on its own subdomain; the
+site works without it.
 
-## 🛠️ Tech Stack
-
-- **Frontend**: React 19, Vite, TailwindCSS
-- **Backend**: Node.js (no TypeScript)
-- **Database**: MongoDB (for storing contact or bot-related data)
-- **APIs & Services**:
-  - EmailJS (contact form)
-  - OpenAI API (chatbot)
-  - Telegram Bot API (in-progress)
-- **Deployment**: DigitalOcean Droplet (Ubuntu, Nginx)
-
----
-
-## 📦 Installation
+## Running it locally
 
 ```bash
-git clone https://github.com/AbduboriyAhmadjonov/Portfolio.git
-cd Portfolio
-npm install
+npm ci
+cp .env.example .env   # fill in your own EmailJS values
+npm run dev            # http://localhost:5173
 ```
 
-## ▶️ Usage
+## Environment variables
 
-### Development
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-### Production (if you have a backend and reverse proxy):
-
-```bash
-npm run build
-npm start
-```
-
-## 🧩 Environment Variables
-
-Create a `.env` file in the root directory. Example:
+Vite inlines these at **build time**, so `.env` must exist on the machine that
+runs `npm run build` — putting it on the server does nothing.
 
 ```env
-VITE_SERVICE_ID="your_service_id"
-VITE_TEMPLATE_ID="your_template_id"
-VITE_PUBLIC_KEY="your_public_key"
+VITE_SERVICE_ID=      # EmailJS service id
+VITE_TEMPLATE_ID=     # EmailJS template id
+VITE_PUBLIC_KEY=      # EmailJS public key
+VITE_BACKEND_URL=     # chat backend origin, no trailing slash
 ```
 
-## 📁 Project Structure
+None of these are secrets — every `VITE_*` value is compiled into the JavaScript
+that ships to the browser. The EmailJS account is protected with domain
+allowlisting, not by hiding them.
 
-```
-Portfolio/
-├── public/
-│   ├── logo.svg
-│   └── resume.pdf
-├── src/
-│   ├── components/
-│   │   ├── App.jsx
-│   │   ├── layout/
-│   │   │   ├── Footer.jsx
-│   │   │   ├── MobileMenu.jsx
-│   │   │   └── Navbar.jsx
-│   │   ├── ui/
-│   │   │   ├── ChatButton.jsx
-│   │   │   ├── Icon.jsx
-│   │   │   ├── Icons.jsx
-│   │   │   └── LoadingScreen.jsx
-│   ├── error/
-│   │   ├── error.css
-│   │   ├── ErrorBoundary.jsx
-│   │   └── ErrorDisplay.jsx
-│   ├── hooks/
-│   │   └── RevealOnScroll.jsx
-│   ├── pages/
-│   │   ├── About.jsx
-│   │   ├── Contact.jsx
-│   │   ├── Home.jsx
-│   │   └── Projects.jsx
-│   ├── styles/
-│   │   └── index.css
-│   └── main.jsx
-├── .env.example
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
+`VITE_BACKEND_URL` must be set even if the chat backend is not running. Omitting
+it makes the value the string `undefined`, and the widget then requests
+`undefined/api/chat`.
+
+## Build and deploy
+
+```bash
+npm run build                                    # -> dist/
+rsync -avz --delete dist/ user@host:/var/www/abduboriy.me/
 ```
 
-## 🔒 Security Considerations
+`dist/` is fully self-contained. nginx needs an SPA fallback
+(`try_files $uri $uri/ /index.html`) so deep links resolve.
 
-- Never commit secrets or API keys to version control.
-- Use HTTPS in production.
-- Sanitize and validate all user input.
+## Author
 
-## 🤖 AI & Automation
+- **Abduboriy Ahmadjonov** — backend-focused full-stack developer, Tashkent
+- [abduboriy.me](https://abduboriy.me) · [github.com/AbduboriyAhmadjonov](https://github.com/AbduboriyAhmadjonov) · [t.me/abduboriy05](https://t.me/abduboriy05)
 
-- Integrates with OpenAI API for GPT-4-powered features. (look at this repo https://github.com/AbduboriyAhmadjonov/learning-langchain.git)
-- Automation via Telegram Bot API and EmailJS for notifications.
-
-## 🤝 Contribution Guidelines
-
-1. Fork the repo and create your branch.
-2. Commit your changes with clear messages.
-3. Open a pull request describing your changes.
-4. Follow the code style and add tests if possible.
-
-## 📄 License
+## License
 
 [MIT](LICENSE)
-
-## 👤 Author & Contact
-
-- **Name:** Abduboriy Ahmadjonov
-- **Portfolio:** [abduboriy.me](https://abduboriy.me)
-- **Telegram:** [@abduboriy05](https://t.me/abduboriy05)

@@ -106,52 +106,35 @@ interface TimelineEntry {
 
 const EXPERIENCE: TimelineEntry[] = [
   {
-    title: 'Automation Engineer / Full-Stack Developer',
-    subtitle: 'HERB Media (Automation Agency)',
-    date: '2024 – Present',
-    bullets: [
-      'Built production n8n automation workflows for 3+ EU-based clients',
-      'Developed ClickUp task management automations, Slack integrations, and Google Sheets reporting pipelines',
-      'Deployed client-facing web tools on VPS infrastructure',
-    ],
-  },
-  {
-    title: 'AI Agentic Developer',
-    subtitle: 'UzVIP Agency',
+    title: 'Full-Stack Developer',
+    subtitle: 'UzVIP Agency · Remote',
     date: 'Oct 2025 – Present',
     bullets: [
-      'Build and deploy n8n automation workflows for client business processes',
-      'Integrate LLMs (Claude, OpenAI) into Slack, Airtable, and Google Workspace',
-      'Design multi-step agentic pipelines that handle lead routing, notifications, and reporting',
-    ],
-  },
-  {
-    title: 'Freelance Full-Stack Developer',
-    date: 'Jul 2024 – Present',
-    bullets: [
-      'Deliver REST and GraphQL APIs using Node.js, Express, and NestJS',
-      'Build React frontends and set up PostgreSQL/MongoDB schemas with migrations',
-      'Build Telegram bots and integrate third-party APIs for client automation needs',
+      'Build and maintain production systems for 5 client companies in Europe, Canada, and Uzbekistan — all live and in daily use',
+      'Built a two-way appointment sync between two booking platforms with conflicting sources of truth — webhook handlers plus idempotency and deduplication logic to stop double-booking',
+      "Migrated and hardened a client's self-hosted Node.js service on Linux — major version upgrade, external task-runner sidecar, containerised deployment, and a documented backup and restore procedure",
+      'Integrated a 65-endpoint third-party REST API behind a typed tool layer with custom header authentication',
+      'Delivered 20+ integrations and data syncs, owning each feature end to end — scope, build, deploy, support',
     ],
   },
   {
     title: 'IT Department — Military University (JXU)',
     date: 'Oct 2022 – Oct 2025',
     bullets: [
-      'Maintained internal web systems and IT infrastructure',
-      'Built internal tools and automations to streamline departmental workflows',
+      'Started on internal tooling in C#/.NET, then moved to Node.js for internal web tools and Telegram bots',
+      'Supported internal software, hardware, and the databases behind them',
     ],
   },
 ];
 
 const EDUCATION: TimelineEntry[] = [
   {
-    title: 'B.S. Telecommunication Technologies',
-    subtitle: 'TUIT, Uzbekistan',
+    title: 'B.Sc. Telecommunication Technologies (in progress)',
+    subtitle: 'Tashkent University of Information Technologies (TUIT)',
     subtitleHref: 'https://tuit.uz/',
-    date: '2022 – 2027',
+    date: '2022 – 2027 (expected)',
     bullets: [
-      'Data Structures, Web Development, Cloud Computing',
+      'Distance programme, studied alongside full-time work',
     ],
   },
 ];
